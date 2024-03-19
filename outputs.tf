@@ -30,10 +30,10 @@ output "principal_database_subnet_address_prefixes" {
 
 output "virtual_network_address_space" {
   description = "The address space of the principal virtual network."
-  value       = azurerm_virtual_network.principal.address_space
+  value       = local.virtual_network_address_space
 }
 
 output "virtual_network_name" {
   description = "The name of the principal virtual network."
-  value       = azurerm_virtual_network.principal.name
+  value       = local.virtual_network_name
 }
