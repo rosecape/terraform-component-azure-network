@@ -1,3 +1,8 @@
+locals {
+  virtual_network_name          = var.create_virtual_network ? azurerm_virtual_network.principal[0].name : data.azurerm_virtual_network.principal[0].name
+  virtual_network_address_space = var.create_virtual_network ? azurerm_virtual_network.principal[0].address_space : data.azurerm_virtual_network.principal[0].address_space
+}
+
 data "azurerm_virtual_network" "principal" {
   count = var.create_virtual_network ? 0 : 1
 
@@ -12,11 +17,6 @@ resource "azurerm_virtual_network" "principal" {
   location            = var.virtual_network_location
   resource_group_name = var.resource_group_name
   address_space       = var.virtual_network_address_space
-}
-
-locals {
-  virtual_network_name          = var.create_virtual_network ? azurerm_virtual_network.principal[0].name : data.azurerm_virtual_network.principal[0].name
-  virtual_network_address_space = var.create_virtual_network ? azurerm_virtual_network.principal[0].address_space : data.azurerm_virtual_network.principal[0].address_space
 }
 
 resource "azurerm_subnet" "principal_public" {
