@@ -23,19 +23,19 @@ resource "azurerm_subnet" "principal_public" {
   name                 = "${var.subnet_name_prefix}-public"
   resource_group_name  = var.resource_group_name
   virtual_network_name = local.virtual_network_name
-  address_prefixes     = [cidrsubnet(local.virtual_network_address_space[0], 8, 10)]
+  address_prefixes     = [cidrsubnet(one(local.virtual_network_address_space), 8, 10)]
 }
 
 resource "azurerm_subnet" "principal_private" {
   name                 = "${var.subnet_name_prefix}-private"
   resource_group_name  = var.resource_group_name
   virtual_network_name = local.virtual_network_name
-  address_prefixes     = [cidrsubnet(local.virtual_network_address_space[0], 8, 11)]
+  address_prefixes     = [cidrsubnet(one(local.virtual_network_address_space), 8, 11)]
 }
 
 resource "azurerm_subnet" "principal_database" {
   name                 = "${var.subnet_name_prefix}-database"
   resource_group_name  = var.resource_group_name
   virtual_network_name = local.virtual_network_name
-  address_prefixes     = [cidrsubnet(local.virtual_network_address_space[0], 8, 20)]
+  address_prefixes     = [cidrsubnet(one(local.virtual_network_address_space), 8, 20)]
 }
